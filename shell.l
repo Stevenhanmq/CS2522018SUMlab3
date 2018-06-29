@@ -29,9 +29,34 @@
   return GREAT;
 }
 
+">>" {
+  return GREATGREAT;
+}
+
+"&" {
+  return AMPERSAND;
+}
+
+"|" {
+  return PIPE;
+}
+
+"<" {
+  return LESS;
+}
+
+">&" {
+  return GREATAMP;
+}
+
+">>&" {
+  return GREATGREATAMP;
+}
+
 [^ \t\n][^ \t\n]* {
   // Assume that file names have only alpha chars
 
   yylval.string_val = strdup(yytext);
   return WORD;
 }
+%%
