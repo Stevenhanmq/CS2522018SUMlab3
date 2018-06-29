@@ -12,7 +12,7 @@
 
 // define all tokens that are used in the lexer here:
 
-%token <string_val> WORD cmd_and_args
+%token <string_val> WORD
 %token NOTOKEN GREAT NEWLINE GREATGREAT GREATGREATAMP GREATAMP
 PIPE AMPERSAND LESS
 
