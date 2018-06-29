@@ -13,7 +13,8 @@
 // define all tokens that are used in the lexer here:
 
 %token <string_val> WORD
-%token NOTOKEN GREAT NEWLINE GREATGREAT GREATGREATAMP GREATAMP PIPE AMPERSAND
+%token NOTOKEN GREAT NEWLINE GREATGREAT GREATGREATAMP GREATAMP
+PIPE AMPERSAND LESS cms_and_args
 
 %union {
   // specify possible types for yylval, for access in shell.l
