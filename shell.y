@@ -14,7 +14,7 @@
 
 %token <string_val> WORD
 %token NOTOKEN GREAT NEWLINE GREATGREAT GREATGREATAMP GREATAMP
-PIPE AMPERSAND LESS
+PIPE AMPERSAND LESS cmd_and_args
 
 %union {
   // specify possible types for yylval, for access in shell.l
@@ -110,6 +110,7 @@ iomodifier_opt:
     printf("   Yacc: insert output \"%s\"\n", $2);
     current_command->out_file = $2;
   }
+  cmd_and_args WORD
   GREATGREATAMP WORD
   GREATAMP WORD
   LESS WORD// can be empty
