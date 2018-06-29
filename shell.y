@@ -104,11 +104,12 @@ iomodifier_opt:
     printf("   Yacc: insert output \"%s\"\n", $2);
     current_command->out_file = $2;
   }
-  | GREATGREAT WORD {
+  
+  GREATGREAT WORD {
     printf("   Yacc: insert output \"%s\"\n", $2);
   }
-  | GREATGREATAMP WORD
-  | GREATAMP WORD
+  GREATGREATAMP WORD
+  GREATAMP WORD
   | LESS WORD// can be empty
   ;
 
