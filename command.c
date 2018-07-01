@@ -157,6 +157,7 @@ void command_clear(command *command) {
   }
 
   command->is_background = 0;
+  command->is_append = 0;
 } /* command_clear */
 
 /*
