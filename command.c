@@ -213,7 +213,7 @@ void command_execute(command *command) {
   // For every simple command fork a new process
   // Setup i/o redirection
   // and call exec
-
+  
   // Clear to prepare for next command
 
   command_clear(command);
