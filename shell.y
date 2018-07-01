@@ -112,6 +112,7 @@ iomodifier_opt:
   }
   GREATGREATAMP WORD {
     printf("   Yacc: insert output \"%s\"\n", $2);
+    current_command->out_file = $2;
   }
   GREATAMP WORD
   LESS WORD// can be empty
