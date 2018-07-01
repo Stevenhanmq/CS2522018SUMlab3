@@ -80,8 +80,6 @@ argument_list:
 
 pipe_list:
   pipe_list PIPE command_and_args {
-    printf("piprhere\n");
-  }
   | command_and_args
   ;
 
