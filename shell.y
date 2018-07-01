@@ -86,7 +86,6 @@ pipe_list:
 argument:
   WORD {
     printf("   Yacc: insert argument \"%s\"\n", $1);
-
     simple_command_insert_argument(current_simple_command, $1);
   }
   ;
@@ -112,21 +111,25 @@ iomodifier_opt:
   GREATGREAT WORD {
     printf("   Yacc: insert output \"%s\"\n", $2);
     current_command->out_file = $2;
+    current_command->is_append = 1;
   }
   |
   GREATGREATAMP WORD {
     printf("   Yacc: insert output \"%s\"\n", $2);
     current_command->out_file = $2;
+    current_command->err_file = $2;
+    current_command->is_append = 1;
   }
   |
   GREATAMP WORD {
     printf("   Yacc: insert output \"%s\"\n", $2);
     current_command->out_file = $2;
+    current_command->err_file = $2;
   }
   |
   LESS WORD {
     printf("   Yacc: insert output \"%s\"\n", $2);
-    current_command->out_file = $2;
+    current_command->in_file = $2;
   }// can be empty
   ;
 
