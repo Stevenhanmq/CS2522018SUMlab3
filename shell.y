@@ -127,6 +127,10 @@ iomodifier_opt:
   }// can be empty
   ;
 
+iomodifier_list:
+  iomodifier_list iomodifier_opt
+  |
+  :
 
 %%
 
