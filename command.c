@@ -228,7 +228,7 @@ void command_execute(command *command) {
 
 void prompt() {
 
-  if (isatty()) {
+  if (isatty(0)) {
     printf("myshell>");
   }
   fflush(stdout);
