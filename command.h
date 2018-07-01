@@ -43,7 +43,7 @@ typedef struct {
   char *err_file;
 
   // Should this command run in background instead of foreground?
-
+  int is_append;
   int is_background;
 } command;
 
