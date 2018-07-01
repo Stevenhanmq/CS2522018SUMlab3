@@ -137,7 +137,7 @@ iomodifier_list:
 
 background_opt:
   AMPERSAND {
-    printf("   Yacc: insert output \"%s\"\n", $1);
+    current_command->is_background = 1;
   }
   |
   ;

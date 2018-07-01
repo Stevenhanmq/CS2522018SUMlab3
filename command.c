@@ -94,7 +94,7 @@ command *command_create() {
   new_command->err_file = 0;
   new_command->is_background = 0;
 
-  new_command->is_append;
+  new_command->is_append = 0;
   return new_command;
 } /* command_create() */
 
