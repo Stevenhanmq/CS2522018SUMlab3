@@ -29,7 +29,7 @@ PIPE AMPERSAND LESS
 #include <stdio.h>
 
 #include "command.h"
-
+#include <string.h>
 // yyerror() is defined at the bottom of this file
 
 void yyerror(const char * s);
@@ -86,7 +86,7 @@ pipe_list:
 argument:
   WORD {
     //printf("   Yacc: insert argument \"%s\"\n", $1);
-    simple_command_insert_argument(current_simple_command, $1);
+    simple_command_insert_argument(current_simple_command, strdup($1));
   }
   ;
 
@@ -95,7 +95,7 @@ command_word:
     //printf("   Yacc: insert command \"%s\"\n", $1);
 
     current_simple_command = simple_command_create();
-    simple_command_insert_argument(current_simple_command, $1);
+    simple_command_insert_argument(current_simple_command, strdup($1));
   }
   ;
 
@@ -105,31 +105,31 @@ iomodifier_opt:
     if (current_command->out_file == NULL) {
       printf("Ambiguous output redirect\n");
     }
-    current_command->out_file = $2;
+    current_command->out_file = strdup($2);
   }
   |
   GREATGREAT WORD {
     //printf("   Yacc: insert output \"%s\"\n", $2);
-    current_command->out_file = $2;
+    current_command->out_file = strdup($2);
     current_command->is_append = 1;
   }
   |
   GREATGREATAMP WORD {
     //    printf("   Yacc: insert output \"%s\"\n", $2);
-    current_command->out_file = $2;
-    current_command->err_file = $2;
+    current_command->out_file = strdup($2);
+    current_command->err_file = strdup($2);
     current_command->is_append = 1;
   }
   |
   GREATAMP WORD {
     //printf("   Yacc: insert output \"%s\"\n", $2);
-    current_command->out_file = $2;
-    current_command->err_file = $2;
+    current_command->out_file = strdup($2);
+    current_command->err_file = strdup($2);
   }
   |
   LESS WORD {
     //printf("   Yacc: insert output \"%s\"\n", $2);
-    current_command->in_file = $2;
+    current_command->in_file = strdup($2);
   }// can be empty
   ;
 
