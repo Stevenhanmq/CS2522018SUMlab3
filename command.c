@@ -212,7 +212,7 @@ void command_execute(command *command) {
     return;
   }
   
-  if (in_file) {
+  if (command.in_file) {
     fdin = open(in_file, O_RDONLY|O_CREAT, 0666);
   }
   else {
