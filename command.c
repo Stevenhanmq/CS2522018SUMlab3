@@ -243,8 +243,8 @@ void command_execute(command *command) {
     close(fdout);
     ret = fork();
     if (ret == 0) {
-      execvp(command->simple_commands[i]->_arguments[0],
-	     command->simple_commands[i]->_arguments);
+      execvp(command->simple_commands[i]->arguments[0],
+	     command->simple_commands[i]->arguments);
       perror("execvp");
       exit(1);
     }
