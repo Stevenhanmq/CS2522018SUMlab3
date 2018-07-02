@@ -252,6 +252,28 @@ void command_execute(command *command) {
       exit(1);
     }
   }
+
+  if (command->err_file) {
+    if (command->is_command == 1) {
+      fderr = open(command->err_file, O_RDWR | O_APPEND, 0666);
+      if (fderr < 0) {
+        perror("ERROR:***Append errfd\n");
+	exit(2);
+       }
+    }
+    else {
+      fderr = open(command->err_file,O_CREAT | O_RDWR, 0666);
+      if (fderr < 0) {
+        perror("ERROR:***Creat errfd\n");
+	exit(2);
+      }  
+    }
+  }
+  else {
+    fderr = dup(tmperr);
+  }
+  
+  
   dup2(tmpin, 0);
   dup2(tmpout, 1);
   close(tmpin);
