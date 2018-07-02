@@ -240,10 +240,12 @@ void command_execute(command *command) {
   
   
   for (i = 0; i < command->num_simple_commands; i++) {
-    dup2(fderr,2);
-    close(fderr);
+    //dup2(fderr,2);
+    //close(fderr);
     dup2(fdin,0);
     close(fdin);
+    dup2(fderr, 2);
+    close(fderr);
     if (i == command->num_simple_commands -1) {
       if (command->out_file) {
         if (command->is_append == 1) {
