@@ -227,7 +227,7 @@ void command_execute(command *command) {
 	  fdout = open(command->out_file, O_RDWR | O_APPEND, 0666);
         }
 	else {
-	  fdout = open(command->out_file, O_CREAT | ORDWR , 0666);
+	  fdout = open(command->out_file, O_CREAT | O_RDWR , 0666);
 	}
       }
       else {
