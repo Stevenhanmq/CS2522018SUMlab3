@@ -58,7 +58,7 @@ command:
 
 simple_command:
   pipe_list iomodifier_list background_opt NEWLINE {
-    printf("   Yacc: Execute command\n");
+    //printf("   Yacc: Execute command\n");
            command_execute(current_command);
   }
   | NEWLINE
@@ -85,14 +85,14 @@ pipe_list:
 
 argument:
   WORD {
-    printf("   Yacc: insert argument \"%s\"\n", $1);
+    //printf("   Yacc: insert argument \"%s\"\n", $1);
     simple_command_insert_argument(current_simple_command, $1);
   }
   ;
 
 command_word:
   WORD {
-    printf("   Yacc: insert command \"%s\"\n", $1);
+    //printf("   Yacc: insert command \"%s\"\n", $1);
 
     current_simple_command = simple_command_create();
     simple_command_insert_argument(current_simple_command, $1);
@@ -109,26 +109,26 @@ iomodifier_opt:
   }
   |
   GREATGREAT WORD {
-    printf("   Yacc: insert output \"%s\"\n", $2);
+    //printf("   Yacc: insert output \"%s\"\n", $2);
     current_command->out_file = $2;
     current_command->is_append = 1;
   }
   |
   GREATGREATAMP WORD {
-    printf("   Yacc: insert output \"%s\"\n", $2);
+    //    printf("   Yacc: insert output \"%s\"\n", $2);
     current_command->out_file = $2;
     current_command->err_file = $2;
     current_command->is_append = 1;
   }
   |
   GREATAMP WORD {
-    printf("   Yacc: insert output \"%s\"\n", $2);
+    //printf("   Yacc: insert output \"%s\"\n", $2);
     current_command->out_file = $2;
     current_command->err_file = $2;
   }
   |
   LESS WORD {
-    printf("   Yacc: insert output \"%s\"\n", $2);
+    //printf("   Yacc: insert output \"%s\"\n", $2);
     current_command->in_file = $2;
   }// can be empty
   ;

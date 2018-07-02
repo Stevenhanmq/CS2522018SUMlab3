@@ -259,7 +259,7 @@ void command_execute(command *command) {
   }
   // Print contents of Command data structure
 
-  command_print(command);
+  //  command_print(command);
 
   // Add execution here
   // For every simple command fork a new process
