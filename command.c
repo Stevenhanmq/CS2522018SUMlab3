@@ -232,7 +232,7 @@ void command_execute(command *command) {
 	}
       }
       else {
-	outfd = dup(tmpout);
+	fdout = dup(tmpout);
       }
     }
     else {
