@@ -206,6 +206,7 @@ void command_execute(command *command) {
   int fdout;
   int fderr;
   int ret;
+  int i;
   if (command->num_simple_commands == 0) {
     prompt();
     return;
