@@ -116,7 +116,7 @@ iomodifier_opt:
   |
   GREATGREATAMP WORD {
     //    printf("   Yacc: insert output \"%s\"\n", $2);
-    current_command->out_file = strdup($2);
+    //current_command->out_file = strdup($2);
     current_command->err_file = strdup($2);
     current_command->is_append = 1;
   }
@@ -128,7 +128,7 @@ iomodifier_opt:
   |
   GREATAMP WORD {
     //printf("   Yacc: insert output \"%s\"\n", $2);
-    current_command->out_file = strdup($2);
+    //current_command->out_file = strdup($2);
     current_command->err_file = strdup($2);
   }
   |
