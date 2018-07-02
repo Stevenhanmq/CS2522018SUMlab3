@@ -236,7 +236,7 @@ void command_execute(command *command) {
       }
     }
     else {
-      inf fdpipe[2];
+      int fdpipe[2];
       pipe (fdpipe);
       fdout = fdpipe[1];
       fdin = fdpipe[0];
