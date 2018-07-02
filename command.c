@@ -201,10 +201,8 @@ void command_execute(command *command) {
   // Don't do anything if there are no simple commands
   int tmpin = dup(0);
   int tmpout = dup(1);
-  int tmperr = dup(2);
   int fdin;
   int fdout;
-  int fderr;
   int ret;
   int i;
   if (command->num_simple_commands == 0) {
