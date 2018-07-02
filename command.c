@@ -199,12 +199,63 @@ void command_print(command *command) {
 
 void command_execute(command *command) {
   // Don't do anything if there are no simple commands
-
+  int tmpin = dup(0);
+  int tmpout = dup(1);
+  int tmperr = dup(2);
+  int fdin;
+  int fdout;
+  int fderr;
+  int ret;
   if (command->num_simple_commands == 0) {
     prompt();
     return;
   }
+  
+  if (in_file) {
+    fdin = open(in_file, O_RDONLY|O_CREAT, 0666);
+  }
+  else {
+    fdin = dup(tmpin);
+  }
 
+  for (i = 0; i < num_simple_commands; i++) {
+    dup2(fdin, 0);
+    close(fdin);
+    if (i == num_simple_commands -1) {
+      if (out_file) {
+        if(is_append == 1){
+	  fdout = open(out_file, O_RDWR | O_APPEND, 0666);
+        }
+	else {
+	  fdout = open(out_file, O_CREAT | ORDWR , 0666);
+	}
+      }
+      else {
+	outfd = dup(tmpout);
+      }
+    }
+    else {
+      inf fdpipe[2];
+      pipe (fdpipe);
+      fdout = fdpipe[1];
+      fdin = fdpipe[0];
+    }
+    dup2(fdout,1);
+    close(fdout);
+    ret = fork();
+    if (ret == 0) {
+      execvp(simple_commands[i].args[0], simple[i].args);
+      perror("execvp");
+      exit(1);
+    }
+  }
+  dup2(tmpin, 0);
+  dup2(tmpout, 1);
+  close(tmpin);
+  close(tmpout);
+  if (!backkground) {
+    waitpid(ret, NULL, 0);
+  }
   // Print contents of Command data structure
 
   command_print(command);
