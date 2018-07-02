@@ -223,8 +223,8 @@ void command_execute(command *command) {
     dup2(fdin, 0);
     close(fdin);
     if (i == command->num_simple_commands -1) {
-      if (out_file) {
-        if(is_append == 1){
+      if (command->out_file) {
+        if (command->is_append == 1) {
 	  fdout = open(out_file, O_RDWR | O_APPEND, 0666);
         }
 	else {
