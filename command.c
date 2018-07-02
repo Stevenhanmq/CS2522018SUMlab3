@@ -300,8 +300,10 @@ void command_execute(command *command) {
   
   dup2(tmpin, 0);
   dup2(tmpout, 1);
+  dup2(tmperr, 2);
   close(tmpin);
   close(tmpout);
+  close(tmperr);
   if (!(command->is_background)) {
     waitpid(ret, NULL, 0);
   }
