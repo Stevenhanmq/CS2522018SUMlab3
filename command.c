@@ -206,7 +206,7 @@ void command_execute(command *command) {
   int fdout;
   int ret;
   int i;
-  int tmperr = dup(0);
+  int tmperr = dup(2);
   int fderr;
   if (command->num_simple_commands == 0) {
     prompt();
@@ -220,7 +220,7 @@ void command_execute(command *command) {
     fdin = dup(tmpin);
   }
 
-  /* if (command->err_file) {
+   if (command->err_file) {
     if (command->is_append == 1) {
       fderr = open(command->err_file, O_CREAT | O_RDWR | O_APPEND, 0666);
       if (fderr < 0) {
@@ -236,7 +236,7 @@ void command_execute(command *command) {
   }
   else {
     fderr = dup(tmperr);
-    }*/
+  }
   
   
   for (i = 0; i < command->num_simple_commands; i++) {
