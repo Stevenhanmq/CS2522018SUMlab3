@@ -222,13 +222,13 @@ void command_execute(command *command) {
 
   if (command->err_file) {
     if (command->is_append == 1) {
-      fderr = open(command->err_file, O_RDWR | O_APPEND, 0666);
+      fderr = open(command->err_file, O_CREAT | O_RDWR | O_APPEND, 0666);
       if (fderr < 0) {
 	exit(2);
       }
     }
     else {
-      fderr = open(command->err_file, O_CREAT | O_RDWR |O_TRUNC, 0666);
+      fderr = open(command->err_file, O_CREAT | O_RDWR | O_TRUNC, 0666);
       if (fderr < 0) {
 	exit(2);
       }
@@ -247,7 +247,7 @@ void command_execute(command *command) {
     if (i == command->num_simple_commands -1) {
       if (command->out_file) {
         if (command->is_append == 1) {
-	  fdout = open(command->out_file, O_RDWR | O_APPEND, 0666);
+	  fdout = open(command->out_file,O_CREAT | O_RDWR | O_APPEND, 0666);
         }
 	else {
 	  fdout = open(command->out_file, O_CREAT | O_RDWR | O_TRUNC, 0666);
