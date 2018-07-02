@@ -228,7 +228,7 @@ void command_execute(command *command) {
       }
     }
     else {
-      fderr = open(command->err_file, O_CREAT | O_RDWR, 0666);
+      fderr = open(command->err_file, O_CREAT | O_RDWR |O_TRUNC, 0666);
       if (fderr < 0) {
 	exit(2);
       }
@@ -250,7 +250,7 @@ void command_execute(command *command) {
 	  fdout = open(command->out_file, O_RDWR | O_APPEND, 0666);
         }
 	else {
-	  fdout = open(command->out_file, O_CREAT | O_RDWR , 0666);
+	  fdout = open(command->out_file, O_CREAT | O_RDWR | O_TRUNC, 0666);
 	}
       }
       else {
