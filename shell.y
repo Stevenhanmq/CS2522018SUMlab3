@@ -102,8 +102,8 @@ command_word:
 iomodifier_opt:
   GREAT WORD {
     //printf("   Yacc: insert output \"%s\"\n", $2);
-    if (current_command->out_file == NULL) {
-      //printf("Ambiguous output redirect.\n");
+    if (current_command->out_file) {
+      printf("Ambiguous output redirect.\n");
     }
     current_command->out_file = strdup($2);
   }
