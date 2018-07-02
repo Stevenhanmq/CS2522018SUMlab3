@@ -14,7 +14,7 @@
 
 %token <string_val> WORD
 %token NOTOKEN GREAT NEWLINE GREATGREAT GREATGREATAMP GREATAMP
-PIPE AMPERSAND LESS
+PIPE AMPERSAND LESS TWOGREAT
 
 %union {
   // specify possible types for yylval, for access in shell.l
@@ -119,6 +119,11 @@ iomodifier_opt:
     current_command->out_file = strdup($2);
     current_command->err_file = strdup($2);
     current_command->is_append = 1;
+  }
+  |
+  TWOGREAT WORD {
+    current_command->out_file = strdup($2);
+    current_command->err_file = strdup($2);
   }
   |
   GREATAMP WORD {

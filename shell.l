@@ -53,6 +53,10 @@
   return GREATGREATAMP;
 }
 
+"2>" {
+  return TWOGREAT;
+}
+
 [^ \t\n][^ \t\n]* {
   // Assume that file names have only alpha chars
 
