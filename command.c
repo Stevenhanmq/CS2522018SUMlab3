@@ -271,7 +271,7 @@ void command_execute(command *command) {
     if (ret == 0) {
       execvp(command->simple_commands[i]->arguments[0],
 	     command->simple_commands[i]->arguments);
-      perror("execvp");
+      //      perror("execvp");
       exit(1);
     }
   }
