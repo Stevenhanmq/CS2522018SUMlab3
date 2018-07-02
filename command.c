@@ -253,7 +253,7 @@ void command_execute(command *command) {
   dup2(tmpout, 1);
   close(tmpin);
   close(tmpout);
-  if (!(command->is_backkground)) {
+  if (!(command->is_background)) {
     waitpid(ret, NULL, 0);
   }
   // Print contents of Command data structure
