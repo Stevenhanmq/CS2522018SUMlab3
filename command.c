@@ -254,7 +254,7 @@ void command_execute(command *command) {
   }
 
   if (command->err_file) {
-    if (command->is_command == 1) {
+    if (command->is_append == 1) {
       fderr = open(command->err_file, O_RDWR | O_APPEND, 0666);
       if (fderr < 0) {
         perror("ERROR:***Append errfd\n");
