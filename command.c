@@ -206,8 +206,8 @@ void command_execute(command *command) {
   int fdout;
   int ret;
   int i;
-  //  int tmperr = dup(0);
-  //int fderr;
+  int tmperr = dup(0);
+  int fderr;
   if (command->num_simple_commands == 0) {
     prompt();
     return;
@@ -220,16 +220,37 @@ void command_execute(command *command) {
     fdin = dup(tmpin);
   }
 
+  if (command->err_file) {
+    if (command->is_append == 1) {
+      fderr = open(command->err_file, O_CREAT | O_RDWR | O_APPEND, 0666);
+      if (fderr < 0) {
+	exit(2);
+      }
+    }
+    else {
+      fderr = open(command->err_file, O_CREAT | O_RDWR | O_TURNC, 0666);
+      if (fderr < 0) {
+	exit(2);
+      }
+    }
+  }
+  else {
+    fderr = dup(tmperr);
+  }
+  
+  
   for (i = 0; i < command->num_simple_commands; i++) {
+    dup2(fderr,2);
+    close(fderr);
     dup2(fdin,0);
     close(fdin);
     if (i == command->num_simple_commands -1) {
       if (command->out_file) {
         if (command->is_append == 1) {
-	  fdout = open(command->out_file, O_RDWR | O_APPEND, 0666);
+	  fdout = open(command->out_file, O_CREAT | O_RDWR | O_APPEND, 0666);
         }
 	else {
-	  fdout = open(command->out_file, O_CREAT | O_RDWR , 0666);
+	  fdout = open(command->out_file, O_CREAT | O_RDWR | O_TRUNC, 0666);
 	}
       }
       else {
