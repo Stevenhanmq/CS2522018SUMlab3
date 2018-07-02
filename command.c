@@ -219,10 +219,10 @@ void command_execute(command *command) {
     fdin = dup(tmpin);
   }
 
-  for (i = 0; i < num_simple_commands; i++) {
+  for (i = 0; i < command->num_simple_commands; i++) {
     dup2(fdin, 0);
     close(fdin);
-    if (i == num_simple_commands -1) {
+    if (i == command->num_simple_commands -1) {
       if (out_file) {
         if(is_append == 1){
 	  fdout = open(out_file, O_RDWR | O_APPEND, 0666);
