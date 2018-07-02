@@ -211,7 +211,7 @@ void command_execute(command *command) {
   }
   
   if (command->in_file) {
-    fdin = open(in_file, O_RDONLY|O_CREAT, 0666);
+    fdin = open(command->in_file, O_RDONLY|O_CREAT, 0666);
   }
   else {
     fdin = dup(tmpin);
