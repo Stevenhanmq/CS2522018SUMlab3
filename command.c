@@ -221,7 +221,7 @@ void command_execute(command *command) {
   }
 
   for (i = 0; i < command->num_simple_commands; i++) {
-    fdin = dup(0);
+    dup(fdin,0);
     close(fdin);
     if (i == command->num_simple_commands -1) {
       if (command->out_file) {
