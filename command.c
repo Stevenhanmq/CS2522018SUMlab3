@@ -244,7 +244,7 @@ void command_execute(command *command) {
     close(fdin);
     dup2(fderr, 2);
     close(fderr);
-    if (i == command->num_simple_commands -1) {
+    if (i == command->num_simple_commands - 1) {
       if (command->out_file) {
         if (command->is_append == 1) {
 	  fdout = open(command->out_file,O_CREAT | O_RDWR | O_APPEND, 0666);
