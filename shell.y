@@ -179,6 +179,7 @@ void expand_wildcards (simple_command * cur, char * arg) {
 int mycompare (const void *s1, const void *s2) {
   char * string1 = strdup(s1);
   char * string2 = strdup(s2);
+  printf("%s,%s\n",string1, string2);
   return (strcmp(string1, string2));
 }
 
