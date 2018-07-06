@@ -37,6 +37,7 @@ PIPE AMPERSAND LESS TWOGREAT
 
 void yyerror(const char * s);
 void expand_wildcards(simple_command * cur, char * arg);
+int mycompare(const void *s1, const void *s2);
 // We must offer a forward declaration of yylex() since it is
 // defined by flex and not available until linking.
 char ** filelist;
@@ -173,6 +174,10 @@ background_opt:
 
 void expand_wildcards (simple_command * cur, char * arg) {
   simple_command_insert_argument(cur, arg);
+}
+
+int mycompare (const void *s1, const void *s2) {
+  return (strcmp(*(char*)s1, *(char*)s2));
 }
 
 void yyerror(const char *message) {
