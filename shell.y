@@ -180,7 +180,7 @@ void wildcard_test (command * cmd, simple_command * arg) {
   */
 }
 
-void expand_wildcards (char * arg) {
+void expand_wildcards (simple_command * arg) {
 
 }
 
