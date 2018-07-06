@@ -170,7 +170,7 @@ background_opt:
  */
 
 void wildcard_test (command * cmd, simple_command * arg) {
-  if (!strchr(arg,'*') && !strchr(arg,'?')) { //I dont need wildcard
+  if (!strchr(*arg,'*') && !strchr(*arg,'?')) { //I dont need wildcard
     command_insert_simple_command(cmd, arg);
   }
   else { //now I need wildcard
