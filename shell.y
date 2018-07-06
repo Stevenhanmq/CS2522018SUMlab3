@@ -37,7 +37,7 @@ PIPE AMPERSAND LESS TWOGREAT
 
 void yyerror(const char * s);
 void wildcard_test(char * cmd, char * arg);
-void expand_wildcard(char * arg);
+void expand_wildcards(char * arg);
 // We must offer a forward declaration of yylex() since it is
 // defined by flex and not available until linking.
 char ** filelist;
