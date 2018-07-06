@@ -90,9 +90,9 @@ pipe_list:
 argument:
   WORD {
     //printf("   Yacc: insert argument \"%s\"\n", $1);
-    if(!(strchr($1,'*'))&& !(strchr($1,'?'))) {
-    simple_command_insert_argument(current_simple_command, strdup($1));
-    }
+    // if(!(strchr($1,'*'))&& !(strchr($1,'?'))) {
+      simple_command_insert_argument(current_simple_command, strdup($1));
+      // }
     //wildcard_test(current_simple_command, strdup($1));
   }
   ;
