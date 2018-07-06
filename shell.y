@@ -174,7 +174,7 @@ background_opt:
 
 void expand_wildcards (simple_command * cur, char * arg) {
   simple_command_insert_argument(cur, arg);
-  int i = mycompare (cur->num_arguments,arg);
+  int i = mycompare (cur->arguments[0],arg);
 }
 
 int mycompare (const void *s1, const void *s2) {
