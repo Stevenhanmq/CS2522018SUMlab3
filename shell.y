@@ -36,7 +36,7 @@ PIPE AMPERSAND LESS TWOGREAT
 // yyerror() is defined at the bottom of this file
 
 void yyerror(const char * s);
- void expand_wildcards(command * cur, char * arg);
+void expand_wildcards(simple_command * cur, char * arg);
 // We must offer a forward declaration of yylex() since it is
 // defined by flex and not available until linking.
 char ** filelist;
@@ -171,7 +171,7 @@ background_opt:
  * On parser error, just print the error
  */
 
-void expand_wildcards (command * cur, char * arg) {
+void expand_wildcards (simple_command * cur, char * arg) {
   simple_command_insert_argument(cur, arg);
 }
 
