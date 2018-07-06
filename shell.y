@@ -36,8 +36,7 @@ PIPE AMPERSAND LESS TWOGREAT
 // yyerror() is defined at the bottom of this file
 
 void yyerror(const char * s);
-void wildcard_test(command * cmd, simple_command * arg);
- void expand_wildcards(simple_command * arg);
+ void expand_wildcards(command * cur, char * arg);
 // We must offer a forward declaration of yylex() since it is
 // defined by flex and not available until linking.
 char ** filelist;
@@ -92,6 +91,9 @@ argument:
     //printf("   Yacc: insert argument \"%s\"\n", $1);
     if(!(strchr($1,'*'))&& !(strchr($1,'?'))) {
       simple_command_insert_argument(current_simple_command, strdup($1));
+    }
+    else {
+      expand_wildcards(current_simple_command, strdup($1));
     }
     //wildcard_test(current_simple_command, strdup($1));
   }
@@ -169,19 +171,8 @@ background_opt:
  * On parser error, just print the error
  */
 
-void wildcard_test (command * cmd, simple_command * arg) {
-  /*  if (!strchr(arg,'*') && !strchr(arg,'?')) { //I dont need wildcard
-    command_insert_simple_command(cmd, arg);
-  }
-  else { //now I need wildcard
-    expand_wildcards(arg);
-    
-  }
-  */
-}
-
-void expand_wildcards (simple_command * arg) {
-
+void expand_wildcards (command * cur, char * arg) {
+  simple_command_insert_argument(cur, arg);
 }
 
 void yyerror(const char *message) {
