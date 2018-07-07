@@ -297,7 +297,7 @@ void command_execute(command *command) {
       command_clear(command);
       return;
     }
-    /*    if (strcmp(command->simple_commands[i]->arguments[0],"cd") == 0) {
+    if (strcmp(command->simple_commands[i]->arguments[0],"cd") == 0) {
       if(command->simple_commands[i]->num_arguments == 1) {
         int tmpflag = chdir(getenv("HOME"));
 	if(tmpflag < 0){
@@ -316,7 +316,7 @@ void command_execute(command *command) {
 	command_clear(command);
 	return;
       }
-      }*/
+    }
     dup2(fdout,1);
     close(fdout);
     ret = fork();
