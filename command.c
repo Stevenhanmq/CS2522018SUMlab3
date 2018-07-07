@@ -273,6 +273,15 @@ void command_execute(command *command) {
       command_clear(command);
       return;
     }
+    if (strcmp(command->simple_commands[i]->arguments[0],"unsetenv") == 0) {
+      pid = unsetenv(command->simple_commands[i]->arguments[1])
+        if (pic < 0) {
+          exit(2);
+	}
+      prompt();
+      command_clear(command);
+      return;
+    }
     dup2(fdout,1);
     close(fdout);
     ret = fork();
