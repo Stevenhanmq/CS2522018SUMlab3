@@ -64,7 +64,21 @@ void simple_command_insert_argument(simple_command *s_command, char *argument) {
       (char **) realloc(s_command->arguments,
                         s_command->num_available_arguments * sizeof(char *));
   }
-
+  char* argbackup = argument;
+  if(*argument == '~'){
+    if(strlen(argument) != 1) {
+      char *tmp = malloc(500)*sizeof(char*);
+      strcpy(tmp,"/homes/");
+      argument++;
+      strcat(tmp,strdup(argument));
+      argument = strdup(tmp);
+      free(tmp);
+    }
+    else{
+      argument = strdup(getenv("HOME"));
+    }  
+  }
+  
   s_command->arguments[s_command->num_arguments] = argument;
 
   // NULL argument signals end of arguement list
@@ -114,7 +128,6 @@ void command_insert_simple_command(command *command,
                command->num_available_simple_commands *
                sizeof(simple_command *));
   }
-  printf("%s,%s\n",s_command->arguments[0],s_command->arguments[1]);
   command->simple_commands[command->num_simple_commands] = s_command;
   command->num_simple_commands++;
 } /* command_insert_simple_command() */
