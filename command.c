@@ -66,7 +66,7 @@ void simple_command_insert_argument(simple_command *s_command, char *argument) {
   }
   if(*argument == '~'){
     if(strlen(argument) != 1) {
-      char *tmp = malloc(500)*sizeof(char*);
+      char *tmp = malloc(500 * sizeof(char*));
       strcpy(tmp,"/homes/");
       argument++;
       strcat(tmp,strdup(argument));
