@@ -31,7 +31,7 @@ simple_command *current_simple_command;
  * Allocate and initialize a new simple_command.
  * Return a pointer to it.
  */
-
+void killzombies(int signal);
 simple_command *simple_command_create() {
   // Initially allocate space for this many arguments
 
@@ -124,6 +124,9 @@ void command_insert_simple_command(command *command,
  * After running, the command will be completely ready, as if
  * it was newly created.
  */
+void killzombies(int signal){
+  while(waitpid(-1,NULL,WNOHANG) > 0);
+}
 
 void command_clear(command *command) {
   for (int i = 0; i < command->num_simple_commands; i++) {
@@ -346,7 +349,14 @@ int main() {
   prompt();
 
   // run the parser
-
+  struct sigaction sigact;
+  sigact.sa_handler = killzombies;
+  sigemptyset(&sigact.sa_mask);
+  sigact.sa_flags = SA_RESTART;
+  if(sigaction(SIGCHLD, &sigact, NULL)){
+    exit(-1);
+  }
+  
   yyparse();
 
   return 0;
