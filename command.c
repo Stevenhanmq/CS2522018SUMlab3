@@ -263,6 +263,11 @@ void command_execute(command *command) {
       fdout = fdpipe[1];
       fdin = fdpipe[0];
     }
+    if (strcmp(command->simple_command[i]->arguments[0],"setenv") != 0) {
+      printf("i am in here\n");
+      
+      
+    }
     dup2(fdout,1);
     close(fdout);
     ret = fork();
@@ -273,27 +278,6 @@ void command_execute(command *command) {
       exit(1);
     }
   }
-  /*
-  if (command->err_file) {
-    if (command->is_append == 1) {
-      fderr = open(command->err_file, O_RDWR | O_APPEND, 0666);
-      if (fderr < 0) {
-        perror("ERROR:***Append errfd\n");
-	exit(2);
-       }
-    }
-    else {
-      fderr = open(command->err_file,O_CREAT | O_RDWR, 0666);
-      if (fderr < 0) {
-        perror("ERROR:***Creat errfd\n");
-	exit(2);
-      }  
-    }
-  }
-  else {
-    fderr = dup(tmperr);
-  }
-  */
   
   
   dup2(tmpin, 0);
