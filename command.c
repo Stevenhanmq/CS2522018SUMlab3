@@ -263,7 +263,7 @@ void command_execute(command *command) {
       fdout = fdpipe[1];
       fdin = fdpipe[0];
     }
-    if (strcmp(command->simple_command[i]->arguments[0],"setenv") != 0) {
+    if (strcmp(command->simple_commands[i]->arguments[0],"setenv") != 0) {
       printf("i am in here\n");
       
       
