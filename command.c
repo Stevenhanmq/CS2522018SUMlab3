@@ -270,7 +270,7 @@ void command_execute(command *command) {
         exit(2);
       }
       prompt();
-      clear();
+      command_clear(command);
       return;
     }
     dup2(fdout,1);
