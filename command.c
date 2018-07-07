@@ -264,7 +264,11 @@ void command_execute(command *command) {
       fdin = fdpipe[0];
     }
     if (strcmp(command->simple_commands[i]->arguments[0],"setenv") == 0) {
-      printf("i am in here\n");
+      pid = setenv(command->simple_commands[i]->arguments[1],
+		   command->simple_commands[i]->arguments[2],1);
+      prompt();
+      clear();
+      return;
       
       
     }
