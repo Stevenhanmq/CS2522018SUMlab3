@@ -36,11 +36,12 @@ PIPE AMPERSAND LESS TWOGREAT
 // yyerror() is defined at the bottom of this file
 
 void yyerror(const char * s);
-void expand_wildcards(simple_command * cur, char * arg);
+void expand_wildcards(char * prefix, char * suffix);
 int mycompare(const void *s1, const void *s2);
 // We must offer a forward declaration of yylex() since it is
 // defined by flex and not available until linking.
 char ** filelist;
+int num_entries;
 int yylex();
 
 %}
@@ -90,11 +91,22 @@ pipe_list:
 argument:
   WORD {
     //printf("   Yacc: insert argument \"%s\"\n", $1);
-    if(!(strchr($1,'*'))&& !(strchr($1,'?'))) {
+    if(!(strchr($1,'*')) && !(strchr($1,'?'))) {
       simple_command_insert_argument(current_simple_command, strdup($1));
     }
     else {
-      expand_wildcards(current_simple_command, strdup($1));
+      char * nopref = "";
+      expand_wildcards(nopref, strdup($1));
+      qsort(filelist, num_entries, sizeof(char *), mycompare);
+      for(int i = 0; i < num_entries; i++) {
+        simple_command_insert_argument(current_simple_command,
+				       strdup(filelist[i]));
+      }
+      if(filelist != NULL){
+	free(filelist);
+      }
+      num_entires = 0;
+      filelist = NULL;
     }
     //wildcard_test(current_simple_command, strdup($1));
   }
@@ -171,9 +183,8 @@ background_opt:
 /*
  * On parser error, just print the error
  */
-
-void expand_wildcards (simple_command * cur, char * arg) {
-  simple_command_insert_argument(cur, arg);
+#define MAXFILENAME 1024
+void expand_wildcards (char * prefix, char * suffix) {
 }
 
 int mycompare (const void *s1, const void *s2) {
