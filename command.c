@@ -274,7 +274,7 @@ void command_execute(command *command) {
       return;
     }
     if (strcmp(command->simple_commands[i]->arguments[0],"unsetenv") == 0) {
-      pid = unsetenv(command->simple_commands[i]->arguments[1])
+      pid = unsetenv(command->simple_commands[i]->arguments[1]);
         if (pid < 0) {
           exit(2);
 	}
