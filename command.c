@@ -64,7 +64,6 @@ void simple_command_insert_argument(simple_command *s_command, char *argument) {
       (char **) realloc(s_command->arguments,
                         s_command->num_available_arguments * sizeof(char *));
   }
-  char* argbackup = argument;
   if(*argument == '~'){
     if(strlen(argument) != 1) {
       char *tmp = malloc(500)*sizeof(char*);
