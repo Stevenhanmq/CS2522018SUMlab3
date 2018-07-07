@@ -33,6 +33,7 @@ PIPE AMPERSAND LESS TWOGREAT
 #include <dirent.h>
 #include <sys/types.h>
 #include <regex.h>
+#include <stdlib.h>
 // yyerror() is defined at the bottom of this file
 
 void yyerror(const char * s);
@@ -105,7 +106,7 @@ argument:
       if(filelist != NULL){
 	free(filelist);
       }
-      num_entires = 0;
+      num_entries = 0;
       filelist = NULL;
     }
     //wildcard_test(current_simple_command, strdup($1));
