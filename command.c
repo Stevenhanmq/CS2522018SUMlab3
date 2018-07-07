@@ -300,6 +300,9 @@ void command_execute(command *command) {
     if (strcmp(command->simple_commands[i]->arguments[0],"cd") == 0) {
       if(command->simple_commands[i]->num_arguments == 1) {
         int tmpflag = chdir(getenv("HOME"));
+	if(tmpflag < 0){
+	  perror("cd");
+	}
 	prompt();
         command_clear(command);
 	return;
