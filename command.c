@@ -114,7 +114,7 @@ void command_insert_simple_command(command *command,
                command->num_available_simple_commands *
                sizeof(simple_command *));
   }
-
+  printf("%s,%s\n"s_command->arguments[0],s_command->arguments[1]);
   command->simple_commands[command->num_simple_commands] = s_command;
   command->num_simple_commands++;
 } /* command_insert_simple_command() */
