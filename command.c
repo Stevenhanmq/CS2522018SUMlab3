@@ -308,7 +308,7 @@ void command_execute(command *command) {
 	return;
       }
       else{
-        int tmpflag = chdir(command->simple_command[i]->arguments[1]);
+        int tmpflag = chdir(command->simple_commands[i]->arguments[1]);
 	if(tmpflag < 0) {
 	  perror("cd");
 	}
