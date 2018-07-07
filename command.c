@@ -27,7 +27,6 @@
 
 command *current_command;
 simple_command *current_simple_command;
-
 /*
  * Allocate and initialize a new simple_command.
  * Return a pointer to it.
@@ -208,6 +207,7 @@ void command_execute(command *command) {
   int i;
   int tmperr = dup(2);
   int fderr;
+  int pid;
   if (command->num_simple_commands == 0) {
     prompt();
     return;
@@ -264,8 +264,11 @@ void command_execute(command *command) {
       fdin = fdpipe[0];
     }
     if (strcmp(command->simple_commands[i]->arguments[0],"setenv") == 0) {
-      int pid = setenv(command->simple_commands[i]->arguments[1],
+      pid = setenv(command->simple_commands[i]->arguments[1],
 		   command->simple_commands[i]->arguments[2],1);
+      if (pid < 0) {
+        exit(2);
+      }
       prompt();
       clear();
       return;
