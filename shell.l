@@ -9,7 +9,7 @@
 %{
 
 #include <string.h>
-#include <unidts.h>
+#include <unistd.h>
 #include "y.tab.h"
 char * read_line();
 int mygetc(FILE * f) {
