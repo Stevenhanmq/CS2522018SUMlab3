@@ -11,7 +11,7 @@
 #include <string.h>
 #include <unistd.h>
 #include "y.tab.h"
-///////////start added code////////////
+
 /*char * read_line();
 int mygetc(FILE * f) {
 static char *p;
@@ -32,7 +32,7 @@ return ch;
 #undef getc
 #define getc(f) mygetc(f)
 */
-/////////////end of code////////////////
+
 %}
 
 %%
