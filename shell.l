@@ -11,7 +11,8 @@
 #include <string.h>
 #include <unistd.h>
 #include "y.tab.h"
-//char * read_line();
+char * read_line(){
+}
 int mygetc(FILE * f) {
 static char *p;
 char ch;
