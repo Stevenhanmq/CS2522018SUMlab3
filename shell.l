@@ -9,7 +9,7 @@
 %{
 
 #include <string.h>
-
+#include <unistd.h>
 #include "y.tab.h"
 ///////////start added code////////////
 char * read_line();
