@@ -197,7 +197,6 @@ background_opt:
  */
 #define MAXFILENAME 1024
 void expand_wildcards (char * prefix, char * suffix) {
-  printf("%s this is suf",suffix);
   if(strlen(suffix) == 0){
     if(num_entries == max_entries){
       max_entries += 100;
