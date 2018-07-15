@@ -245,6 +245,7 @@ void expand_wildcards (char * prefix, char * suffix) {
     else { *r=*a; r++;}
     a++;
   }
+   printf("%s expanded\n",expanded);
   *r='$';
   r++;
   *r=0;
@@ -261,7 +262,6 @@ void expand_wildcards (char * prefix, char * suffix) {
   else{
     place = prefix;
   }
-  printf("%s place\n",place);
   DIR *dir = opendir(place);
   if (dir == NULL) {
     perror("opendir");
