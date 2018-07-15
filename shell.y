@@ -110,7 +110,7 @@ argument:
       else {
         qsort(filelist, num_entries, sizeof(char *), mycompare);
         for(int i = 0; i < num_entries; i++) {
-          printf("filelist: %s\n", filelist[i]);
+	  //          printf("filelist: %s\n", filelist[i]);
 	  simple_command_insert_argument(current_simple_command,
 				       strdup(filelist[i]));
         }
