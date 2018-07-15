@@ -69,9 +69,9 @@ void simple_command_insert_argument(simple_command *s_command, char *argument) {
   if(*argument == '~'){
     if(strlen(argument) != 1) {
       char *tmp = malloc(500 * sizeof(char*));
-      strcpy(tmp,"/homes/");
+      strcpy(tmp, "/homes/");
       argument++;
-      strcat(tmp,strdup(argument));
+      strcat(tmp, strdup(argument));
       argument = strdup(tmp);
       free(tmp);
     }
@@ -119,7 +119,7 @@ command *command_create() {
  */
 
 void command_insert_simple_command(command *command,
-                                   simple_command *s_command) {
+simple_command *s_command) {
   if (command->num_available_simple_commands == command->num_simple_commands) {
     // double size of simple command list
 
@@ -139,13 +139,13 @@ void command_insert_simple_command(command *command,
  * it was newly created.
  */
 void killzombies(int signal){
-  while(waitpid(-1,NULL,WNOHANG) > 0);
+  while(waitpid(-1, NULL, WNOHANG) > 0);
 }
 
 void ctrlc(int signal){
-  fprintf(stderr,"\n");
+  fprintf(stderr, "\n");
   prompt();
-  promptflag = 1;  
+  promptflag = 1; 
 }
 
 void command_clear(command *command) {
@@ -222,7 +222,7 @@ void command_print(command *command) {
 
 void command_execute(command *command) {
   // Don't do anything if there are no simple commands
-  if(!strcmp(command->simple_commands[0]->arguments[0],"exit")){
+  if(!strcmp(command->simple_commands[0]->arguments[0], "exit")){
     exit(0);
   }
   int tmpin = dup(0);
@@ -246,17 +246,17 @@ void command_execute(command *command) {
     fdin = dup(tmpin);
   }
 
-   if (command->err_file) {
+  if (command->err_file) {
     if (command->is_append == 1) {
       fderr = open(command->err_file, O_CREAT | O_RDWR | O_APPEND, 0666);
       if (fderr < 0) {
-	exit(2);
+        exit(2);
       }
     }
     else {
       fderr = open(command->err_file, O_CREAT | O_RDWR | O_TRUNC, 0666);
       if (fderr < 0) {
-	exit(2);
+        exit(2);
       }
     }
   }
@@ -266,21 +266,21 @@ void command_execute(command *command) {
   
   
   for (i = 0; i < command->num_simple_commands; i++) {
-    dup2(fdin,0);
+    dup2(fdin, 0);
     close(fdin);
     dup2(fderr, 2);
     close(fderr);
     if (i == command->num_simple_commands - 1) {
       if (command->out_file) {
         if (command->is_append == 1) {
-	  fdout = open(command->out_file,O_CREAT | O_RDWR | O_APPEND, 0666);
+          fdout = open(command->out_file, O_CREAT | O_RDWR | O_APPEND, 0666);
         }
-	else {
-	  fdout = open(command->out_file, O_CREAT | O_RDWR | O_TRUNC, 0666);
-	}
+        else {
+          fdout = open(command->out_file, O_CREAT | O_RDWR | O_TRUNC, 0666);
+        }
       }
       else {
-	fdout = dup(tmpout);
+        fdout = dup(tmpout);
       }
     }
     else {
@@ -289,9 +289,9 @@ void command_execute(command *command) {
       fdout = fdpipe[1];
       fdin = fdpipe[0];
     }
-    if (strcmp(command->simple_commands[i]->arguments[0],"setenv") == 0) {
+    if (strcmp(command->simple_commands[i]->arguments[0], "setenv") == 0) {
       pid = setenv(command->simple_commands[i]->arguments[1],
-		   command->simple_commands[i]->arguments[2],1);
+                   command->simple_commands[i]->arguments[2], 1);
       if (pid < 0) {
         exit(2);
       }
@@ -299,41 +299,41 @@ void command_execute(command *command) {
       command_clear(command);
       return;
     }
-    if (strcmp(command->simple_commands[i]->arguments[0],"unsetenv") == 0) {
+    if (strcmp(command->simple_commands[i]->arguments[0], "unsetenv") == 0) {
       pid = unsetenv(command->simple_commands[i]->arguments[1]);
-        if (pid < 0) {
-          exit(2);
-	}
+      if (pid < 0) {
+        exit(2);
+      }
       prompt();
       command_clear(command);
       return;
     }
-    if (strcmp(command->simple_commands[i]->arguments[0],"cd") == 0) {
+    if (strcmp(command->simple_commands[i]->arguments[0], "cd") == 0) {
       if(command->simple_commands[i]->num_arguments == 1) {
         int tmpflag = chdir(getenv("HOME"));
-	if(tmpflag < 0){
-	  perror("cd");
-	}
-	prompt();
+        if(tmpflag < 0){
+          perror("cd");
+        }
+        prompt();
         command_clear(command);
-	return;
+        return;
       }
       else{
         int tmpflag = chdir(command->simple_commands[i]->arguments[1]);
-	if(tmpflag < 0) {
-	  perror("cd");
-	}
-	prompt();
-	command_clear(command);
-	return;
+        if(tmpflag < 0) {
+          perror("cd");
+        }
+        prompt();
+        command_clear(command);
+        return;
       }
     }
-    dup2(fdout,1);
+    dup2(fdout, 1);
     close(fdout);
     ret = fork();
     if (ret == 0) {
       execvp(command->simple_commands[i]->arguments[0],
-	     command->simple_commands[i]->arguments);
+             command->simple_commands[i]->arguments);
       //      perror("execvp");
       exit(1);
     }
