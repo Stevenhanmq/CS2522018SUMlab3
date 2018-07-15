@@ -197,8 +197,8 @@ background_opt:
  */
 #define MAXFILENAME 1024
 void expand_wildcards (char * prefix, char * suffix) {
+  printf("%s this is suf",suffix);
   if(strlen(suffix) == 0){
-    printf("if i get in here\n");
     if(num_entries == max_entries){
       max_entries += 100;
       filelist = (char**)realloc(filelist, max_entries*sizeof(char*));
