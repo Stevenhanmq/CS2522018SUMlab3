@@ -28,6 +28,7 @@
 command *current_command;
 simple_command *current_simple_command;
 int promptflag;
+int opened = 0;
 /*
  * Allocate and initialize a new simple_command.
  * Return a pointer to it.
@@ -384,7 +385,7 @@ void prompt() {
 
 int main() {
   // initialize the current_command
-
+  
   promptflag = 0;
   current_command = command_create();
 
@@ -395,7 +396,10 @@ int main() {
   if(sigaction(SIGINT, &sigactc, NULL)){
     exit(-1);
   }
-  
+  if(opened == 0){
+    prompt();
+    opened = 1;
+  }  
 
   // run the parser
   struct sigaction sigact;
