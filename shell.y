@@ -290,7 +290,6 @@ void expand_wildcards (char * prefix, char * suffix) {
     }
   }
   closedir(dir);
-  free(arg);
 }
 
 int mycompare (const void *s1, const void *s2) {
