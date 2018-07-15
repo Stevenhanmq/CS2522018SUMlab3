@@ -143,7 +143,7 @@ void killzombies(int signal){
 
 void ctrlc(int signal){
   fprintf(stderr,"\n");
-  if(promptflag == 0){prompt();}
+  if(promptflag == 1){prompt();}
 }
 
 void command_clear(command *command) {
