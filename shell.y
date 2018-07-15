@@ -230,16 +230,18 @@ void expand_wildcards (char * prefix, char * suffix) {
   char *reg =  (char*) malloc(2*strlen(arg)+10);
   char *a = arg;
   char *r = reg;
-  *r = ‘^’;
+  *r = 'r';
   r++;
   while (*a) {
-    if (*a == ‘*’) { *r=‘.’; r++; *r=‘*’; r++; }
-    else if (*a == ‘?’) { *r=‘.’; r++;}
-    else if (*a == ‘.’) { *r=‘\\’; r++; *r=‘.’; r++;}
+    if (*a == '*') { *r='.'; r++; *r='*'; r++; }
+    else if (*a == '?') { *r='.'; r++;}
+    else if (*a == '.') { *r='\\'; r++; *r='.'; r++;}
     else { *r=*a; r++;}
     a++;
   }
-  *r=‘$’; r++; *r=0;
+  *r='$';
+  r++;
+  *r=0;
   regex_t re;
   int expbuf = regcomp(&re,reg,REG_EXTENDED|REG_NOSUB);
   if(result == NULL) {
