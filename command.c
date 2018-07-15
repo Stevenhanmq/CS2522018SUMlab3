@@ -397,8 +397,9 @@ int main() {
   if(sigaction(SIGINT, &sigactc, NULL)){
     exit(-1);
   }
-  
+  printf("label1\n");
   prompt();
+  printf("label2\n");
 
   // run the parser
   struct sigaction sigact;
