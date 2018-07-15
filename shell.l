@@ -62,20 +62,19 @@ return ch;
   printf("%s getinherre?\n", yytext);
   char * p = yytext;
   char * w = (char*)malloc(200);
-  char * tmp;
-  p++;
+  char * tmp = w;
   while (*p){
-    if(*p != '\"'){
-      *tmp = *p;
-      tmp++;
+    if(*p == '\"'){
       p++;
+      while(*p != '\"'){
+        *tmp = *p;
+        p++;
+        tmp++;
+      }
     }
-    else{
-      *tmp = '\0';
-      p++;
-      tmp++;
-    }
-  }
+    p++;
+  } 
+  *tmp = '\0'
   yytext = strdup(w);
   yylval.string_val = strdup(yytext);
   return WORD;
