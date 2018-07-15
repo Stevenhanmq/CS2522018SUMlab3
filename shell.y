@@ -232,11 +232,10 @@ void expand_wildcards (char * prefix, char * suffix) {
     return;
   }
   char *arg = expanded;
-  printf("%s expamded\n",expanded);
   char *reg =  (char*) malloc(2*strlen(arg)+10);
   char *a = arg;
   char *r = reg;
-  *r = 'r';
+  *r = '^';
   r++;
   while (*a) {
     if (*a == '*') { *r='.'; r++; *r='*'; r++; }
@@ -245,7 +244,7 @@ void expand_wildcards (char * prefix, char * suffix) {
     else { *r=*a; r++;}
     a++;
   }
-   printf("%s expanded\n",arg);
+  printf("%s expanded\n",arg);
   *r='$';
   r++;
   *r=0;
