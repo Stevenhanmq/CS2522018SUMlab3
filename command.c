@@ -27,6 +27,7 @@
 
 command *current_command;
 simple_command *current_simple_command;
+int promptflag;
 /*
  * Allocate and initialize a new simple_command.
  * Return a pointer to it.
@@ -384,7 +385,7 @@ void prompt() {
 int main() {
   // initialize the current_command
 
-  int promptflag = 0;
+  promptflag = 0;
   current_command = command_create();
 
   struct sigaction sigactc;
