@@ -203,7 +203,66 @@ void expand_wildcards (char * prefix, char * suffix) {
     filelist[num_entries] = strdup(prefix);
     num_entries +=1;
     return;
-  }  
+  }
+  char * s = strchr(suffix,'/');
+  char expanded[500];
+  if (s == NULL) {
+    strcpy(expanded, suffix);
+    suffix = suffix + strlen(suffix);
+  }
+  else {
+    strncpy(expanded, suffix, s-suffix);
+    expanded[s-suffix] = '\0';
+    suffix = s+1;
+  }
+  char new_pre[500];
+  if(strchr(expanded,'*') == NULL && strchr(expanded, '?') == NULL){
+    if(strcmp(prefix,"/")){
+      sprintf(new_pre,"%s/%s",prefix,expanded);
+    }
+    else{
+      sprintf(new_pre,"/%s",expanded);
+    }
+    expand_wildcards (new_pre, suffix);
+    return;
+  }
+  char *arg = expanded;
+  char *reg =  (char*) malloc(2*strlen(arg)+10);
+  char *a = arg;
+  char *r = reg;
+  *r = ‘^’;
+  r++;
+  while (*a) {
+    if (*a == ‘*’) { *r=‘.’; r++; *r=‘*’; r++; }
+    else if (*a == ‘?’) { *r=‘.’; r++;}
+    else if (*a == ‘.’) { *r=‘\\’; r++; *r=‘.’; r++;}
+    else { *r=*a; r++;}
+    a++;
+  }
+  *r=‘$’; r++; *r=0;
+  regex_t re;
+  int expbuf = regcomp(&re,reg,REG_EXTENDED|REG_NOSUB);
+  if(result == NULL) {
+    perror("compile");
+    return;
+  }
+  char * place;
+  if(strlen(prefix) == 0){
+    place == ".";
+  }
+  else{
+    place == prefix;
+  }
+  DIR *dir = opendir(place);
+  if (dir == NULL) {
+    perror(“opendir”);
+    return;
+  }
+  regmatch_t match;
+  struct struct dirent *ent;
+  while ((ent = readdir(dir)) != NULL){
+    
+  }
 }
 
 int mycompare (const void *s1, const void *s2) {
