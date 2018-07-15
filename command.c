@@ -398,12 +398,7 @@ int main() {
     exit(-1);
   }
   
-  printf("%d promptflag is here\n",promptflag);
-  if(promptflag == 0){
-    printf("so i didnot get in here?\n");
-    prompt();
-    promptflag = 1;
-  }
+  prompt();
 
   // run the parser
   struct sigaction sigact;
