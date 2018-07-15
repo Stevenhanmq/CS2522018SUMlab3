@@ -140,6 +140,11 @@ void killzombies(int signal){
   while(waitpid(-1,NULL,WNOHANG) > 0);
 }
 
+void ctrlc(int signal){
+  fprintf(stderr,"\n");
+  prompt();
+}
+
 void command_clear(command *command) {
   for (int i = 0; i < command->num_simple_commands; i++) {
     for (int j = 0; j < command->simple_commands[i]->num_arguments; j++) {
@@ -391,6 +396,15 @@ int main() {
   if(sigaction(SIGCHLD, &sigact, NULL)){
     exit(-1);
   }
+
+  struct sigaction sigact;
+  sigact.sa_handler = ctrlc;
+  sigemptyset(&sigact.sa_mask);
+  sigact.sa_flags = SA_RESTART;
+  if(sigaction(SIGCHLD, &sigact, NULL)){
+    exit(-1);
+  }
+
   
   yyparse();
 
