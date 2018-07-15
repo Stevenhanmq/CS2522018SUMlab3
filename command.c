@@ -27,7 +27,7 @@
 
 command *current_command;
 simple_command *current_simple_command;
-int promptflag;
+int promptflag = 0;
 int opened = 0;
 /*
  * Allocate and initialize a new simple_command.
@@ -145,7 +145,7 @@ void killzombies(int signal){
 void ctrlc(int signal){
   fprintf(stderr,"\n");
   prompt();
-  
+  promptflag = 1;  
 }
 
 void command_clear(command *command) {
@@ -362,8 +362,12 @@ void command_execute(command *command) {
 
   command_clear(command);
   // Print next prompt
-
-  prompt();
+  if(promptflag == 1){
+    promptflag = 0;
+  }
+  else{
+    prompt();
+  }
 } /* command_execute() */
 
 
