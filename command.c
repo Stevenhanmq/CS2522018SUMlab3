@@ -214,6 +214,9 @@ void command_print(command *command) {
 
 void command_execute(command *command) {
   // Don't do anything if there are no simple commands
+  if(!strcmp(command->simple_commands[0]->arguments[0],"exit")){
+    exit(0);
+  }
   int tmpin = dup(0);
   int tmpout = dup(1);
   int fdin;
