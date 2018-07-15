@@ -58,6 +58,28 @@ return ch;
   return AMPERSAND;
 }
 
+\"[^\t\n\"]*\" {
+  printf("getinherre?\n");
+  char * p = yytext;
+  char * w = (char*)malloc(1024);
+  char * a = w;
+  while(*p){
+    if(*p == '\"'){
+      p++;
+      while(*p != '\"'){
+        *a = *p;
+        p++;
+        a++;
+      }
+    }
+  p++;
+  }
+  *a = '\0';
+  yytext = strdup(w);
+  yylval.string_val = strdup(yytext);
+  return WORD;
+}
+
 "|" {
   return PIPE;
 }
@@ -85,26 +107,5 @@ return ch;
   return WORD;
 }
 
-\"[^\t\n\"]*\" {
-  printf("getinherre?\n");
-  char * p = yytext;
-  char * w = (char*)malloc(1024);
-  char * a = w;
-  while(*p){
-    if(*p == '\"'){
-      p++;
-      while(*p != '\"'){
-        *a = *p;
-        p++;
-        a++;
-      }
-    }
-  p++;
-  }
-  *a = '\0';
-  yytext = strdup(w);
-  yylval.string_val = strdup(yytext);
-  return WORD;
-}
 
 %%
