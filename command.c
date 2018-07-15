@@ -386,6 +386,14 @@ int main() {
 
   current_command = command_create();
 
+  struct sigaction sigactc;
+  sigactc.sa_handler = ctrlc;
+  sigemptyset(&sigactc.sa_mask);
+  sigactc.sa_flags = SA_RESTART;
+  if(sigaction(SIGCHLD, &sigactc, NULL)){
+    exit(-1);
+  }
+
   prompt();
 
   // run the parser
@@ -394,14 +402,6 @@ int main() {
   sigemptyset(&sigact.sa_mask);
   sigact.sa_flags = SA_RESTART;
   if(sigaction(SIGCHLD, &sigact, NULL)){
-    exit(-1);
-  }
-
-  struct sigaction sigactc;
-  sigactc.sa_handler = ctrlc;
-  sigemptyset(&sigactc.sa_mask);
-  sigactc.sa_flags = SA_RESTART;
-  if(sigaction(SIGCHLD, &sigactc, NULL)){
     exit(-1);
   }
 
