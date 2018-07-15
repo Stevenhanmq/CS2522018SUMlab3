@@ -85,7 +85,7 @@ return ch;
   return WORD;
 }
 
-\"*\" {
+\"[^\t\n\"]*\" {
   printf("getinherre?\n");
   char * p = yytext;
   char * w = (char*)malloc(1024);
