@@ -144,8 +144,6 @@ void killzombies(int signal){
 void ctrlc(int signal){
   fprintf(stderr,"\n");
   prompt();
-  printf("get in here\n");
-  promptflag = 1;
 }
 
 void command_clear(command *command) {
