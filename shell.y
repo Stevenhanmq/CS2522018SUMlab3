@@ -279,7 +279,7 @@ void expand_wildcards (char * prefix, char * suffix) {
             sprintf(new_pre,"%s",ent->d_name);
 	  }
 	  expand_wildcards(new_pre,suffix);
-          printf("ent->d_name[0] == .\n%s, %s\n",nre_pre,suffix);
+          printf("ent->d_name[0] == .\n%s, %s\n",new_pre,suffix);
 	}
       }
       else{
