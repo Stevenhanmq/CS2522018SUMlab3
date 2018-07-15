@@ -260,7 +260,7 @@ void expand_wildcards (char * prefix, char * suffix) {
   else{
     place = prefix;
   }
-  printf("%d place\n",place);
+  printf("%s place\n",place);
   DIR *dir = opendir(place);
   if (dir == NULL) {
     perror("opendir");
