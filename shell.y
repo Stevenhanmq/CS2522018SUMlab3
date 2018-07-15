@@ -264,6 +264,7 @@ void expand_wildcards (char * prefix, char * suffix) {
   DIR *dir = opendir(place);
   if (dir == NULL) {
     perror("opendir");
+    printf("anc I here\n");
     return;
   }
   regmatch_t match;
