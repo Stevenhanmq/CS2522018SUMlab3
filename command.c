@@ -359,7 +359,7 @@ void command_execute(command *command) {
   // Clear to prepare for next command
 
   command_clear(command);
-
+  promptflag = 0;
   // Print next prompt
 
   prompt();
@@ -395,9 +395,9 @@ int main() {
   if(sigaction(SIGINT, &sigactc, NULL)){
     exit(-1);
   }
-  printf("label1\n");
-  prompt();
-  printf("label2\n");
+  if(promptflag == 0){
+    prompt();
+  }
 
   // run the parser
   struct sigaction sigact;
