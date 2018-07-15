@@ -43,6 +43,7 @@ int mycompare(const void *s1, const void *s2);
 // defined by flex and not available until linking.
 char ** filelist;
 int num_entries;
+int max_entries = 100;
 int yylex();
 
 %}
@@ -96,6 +97,9 @@ argument:
       simple_command_insert_argument(current_simple_command, strdup($1));
     }
     else {
+      if(filelist == NULL) {
+        filelist = (char**)malloc(max_entries*sizeof(char*));
+      }
       char * nopref = "";
       expand_wildcards(nopref, strdup($1));
       if (num_entries == 0) {
@@ -191,7 +195,15 @@ background_opt:
  */
 #define MAXFILENAME 1024
 void expand_wildcards (char * prefix, char * suffix) {
-  
+  if(strlen(suffix) == 0){
+    if(num_entries == max_entries){
+      max_entries += 100;
+      filelist = (char**)realloc(filelist, max_entries*sizeof(char*));
+    }
+    filelist[num_entries] = strdup(prefix);
+    num_entries +=1;
+    return;
+  }  
 }
 
 int mycompare (const void *s1, const void *s2) {
