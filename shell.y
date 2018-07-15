@@ -263,7 +263,24 @@ void expand_wildcards (char * prefix, char * suffix) {
   regmatch_t match;
   struct dirent *ent;
   while ((ent = readdir(dir)) != NULL){
-    
+    if(regexec(&re, ent->d_name,1,&match,0) == 0){
+      if(ent->d_name == '.'){
+        if(arg[0] == '.'){
+          if(strcmp(prefix,"")){
+            sprintf(new_pre, "%s/%s",prefix,ent->d_name);
+	  }
+	  else{
+            sprintf(new_pre,"%s",ent->d_name);
+	  }
+	  expand_wildcards(new_pre,suffix);
+	}
+      }
+      else{
+        if(!strcmp(prefix,"")){
+          sprintf(new_pre,"%s",ent->d_name);
+	}
+      }
+    }
   }
 }
 
