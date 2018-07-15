@@ -244,7 +244,7 @@ void expand_wildcards (char * prefix, char * suffix) {
   *r=0;
   regex_t re;
   int expbuf = regcomp(&re,reg,REG_EXTENDED|REG_NOSUB);
-  if(expbuf == NULL) {
+  if(expbuf != 0) {
     perror("compile");
     return;
   }
