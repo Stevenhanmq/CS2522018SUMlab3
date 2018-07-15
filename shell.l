@@ -61,20 +61,21 @@ return ch;
 \"[^\t\n\"]*\" {
   printf("getinherre?\n");
   char * p = yytext;
-  char * w = (char*)malloc(1024);
-  char * a = w;
-  while(*p){
-    if(*p == '\"'){
-      p++;
-      while(*p != '\"'){
-        *a = *p;
-        p++;
-        a++;
-      }
-    }
+  char * w = (char*)malloc(200);
+  char * tmp;
   p++;
+  while (*p){
+    if(*p != '\"'){
+      *tmp = *p;
+      tmp++;
+      p++;
+    }
+    else{
+      *tmp = '\0';
+      p++
+      tmp++
+    }
   }
-  *a = '\0';
   yytext = strdup(w);
   yylval.string_val = strdup(yytext);
   return WORD;
