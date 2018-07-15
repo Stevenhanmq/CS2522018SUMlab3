@@ -142,7 +142,7 @@ void killzombies(int signal){
 
 void ctrlc(int signal){
   fprintf(stderr,"\n");
-  if(isatty(0))prompt();
+  if(promptflag == 0){prompt();}
 }
 
 void command_clear(command *command) {
@@ -384,6 +384,7 @@ void prompt() {
 int main() {
   // initialize the current_command
 
+  int promptflag = 0;
   current_command = command_create();
 
   struct sigaction sigactc;
@@ -395,6 +396,7 @@ int main() {
   }
 
   prompt();
+  promptflag = 1;
 
   // run the parser
   struct sigaction sigact;
