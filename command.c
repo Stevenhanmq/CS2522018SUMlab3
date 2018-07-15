@@ -142,7 +142,7 @@ void killzombies(int signal){
 
 void ctrlc(int signal){
   fprintf(stderr,"\n");
-  //  prompt();
+  if(isatty(0))prompt();
 }
 
 void command_clear(command *command) {
