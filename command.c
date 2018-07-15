@@ -144,7 +144,9 @@ void killzombies(int signal){
 
 void ctrlc(int signal){
   fprintf(stderr,"\n");
-  prompt();
+  if(promptflag == 0){
+    prompt();
+  }
 }
 
 void command_clear(command *command) {
@@ -360,7 +362,7 @@ void command_execute(command *command) {
   // Clear to prepare for next command
 
   command_clear(command);
-  promptflag = 0;
+  promptflag = 1;
   // Print next prompt
 
   prompt();
