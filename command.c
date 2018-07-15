@@ -143,7 +143,6 @@ void killzombies(int signal){
 
 void ctrlc(int signal){
   fprintf(stderr,"\n");
-  promptflag = 1;
   prompt();
 }
 
@@ -396,9 +395,7 @@ int main() {
   if(sigaction(SIGINT, &sigactc, NULL)){
     exit(-1);
   }
-  if(promptflag == 0){
-    prompt();
-  }
+  
 
   // run the parser
   struct sigaction sigact;
