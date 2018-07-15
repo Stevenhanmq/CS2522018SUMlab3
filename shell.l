@@ -59,9 +59,8 @@ return ch;
 }
 
 \"[^\t\n\"]*\" {
-  printf("getinherre?\n");
-char * p = yytext;
-printf("%s",p);
+  printf("%s getinherre?\n", p);
+  char * p = yytext;
   char * w = (char*)malloc(200);
   char * tmp;
   p++;
