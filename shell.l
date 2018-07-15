@@ -86,6 +86,7 @@ return ch;
 }
 
 ["][^\n]+["] {
+  printf("getinherre?\n");
   char * p = yytext;
   char * w = (char*)malloc(1024);
   char * a = w;
