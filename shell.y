@@ -203,9 +203,9 @@ void expand_wildcards (char * prefix, char * suffix) {
       filelist = (char**)realloc(filelist, max_entries*sizeof(char*));
     }
     filelist[num_entries] = strdup(prefix);
-    printf("%s, prefix\n",prefix);
+    /*printf("%s, prefix\n",prefix);
     printf("%d, numentries", num_entries);
-    printf("%s, suffix\n",suffix);
+    printf("%s, suffix\n",suffix);*/
     num_entries +=1;
     return;
   }
@@ -260,6 +260,7 @@ void expand_wildcards (char * prefix, char * suffix) {
   else{
     place = prefix;
   }
+  printf("%d place\n",place);
   DIR *dir = opendir(place);
   if (dir == NULL) {
     perror("opendir");
