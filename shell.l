@@ -84,4 +84,8 @@ return ch;
   yylval.string_val = strdup(yytext);
   return WORD;
 }
+[^ \t\n|<>&"]+  {
+  yylval.string_val = strdup(yytext);
+  return WORD;
+}
 %%
