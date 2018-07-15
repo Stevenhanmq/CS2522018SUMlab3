@@ -245,7 +245,7 @@ void expand_wildcards (char * prefix, char * suffix) {
     else { *r=*a; r++;}
     a++;
   }
-   printf("%s expanded\n",expanded);
+   printf("%s expanded\n",arg);
   *r='$';
   r++;
   *r=0;
