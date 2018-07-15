@@ -200,6 +200,7 @@ void expand_wildcards (char * prefix, char * suffix) {
       max_entries += 100;
       filelist = (char**)realloc(filelist, max_entries*sizeof(char*));
     }
+    printf("%s",prefix);
     filelist[num_entries] = strdup(prefix);
     num_entries +=1;
     return;
