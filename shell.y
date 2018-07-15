@@ -250,10 +250,10 @@ void expand_wildcards (char * prefix, char * suffix) {
   }
   char * place;
   if(strlen(prefix) == 0){
-    place == ".";
+    place = ".";
   }
   else{
-    place == prefix;
+    place = prefix;
   }
   DIR *dir = opendir(place);
   if (dir == NULL) {
