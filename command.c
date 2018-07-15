@@ -394,7 +394,7 @@ int main() {
   sigactc.sa_handler = ctrlc;
   sigemptyset(&sigactc.sa_mask);
   sigactc.sa_flags = SA_RESTART;
-  if(sigaction(SIGINT, &sigact, NULL)){
+  if(sigaction(SIGINT, &sigactc, NULL)){
     exit(-1);
   }
   
