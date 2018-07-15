@@ -143,6 +143,7 @@ void killzombies(int signal){
 
 void ctrlc(int signal){
   fprintf(stderr,"\n");
+  promptflag = 1;
   prompt();
 }
 
