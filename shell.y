@@ -264,7 +264,6 @@ void expand_wildcards (char * prefix, char * suffix) {
   DIR *dir = opendir(place);
   if (dir == NULL) {
     perror("opendir");
-    printf("anc I here\n");
     return;
   }
   regmatch_t match;
@@ -274,6 +273,7 @@ void expand_wildcards (char * prefix, char * suffix) {
       if(ent->d_name[0] == '.'){
         if(arg[0] == '.'){
           if(strcmp(prefix,"")){
+	    printf("I get in here\n");
             sprintf(new_pre, "%s/%s",prefix,ent->d_name);
 	  }
 	  else{
