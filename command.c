@@ -397,11 +397,11 @@ int main() {
     exit(-1);
   }
 
-  struct sigaction sigact;
-  sigact.sa_handler = ctrlc;
-  sigemptyset(&sigact.sa_mask);
-  sigact.sa_flags = SA_RESTART;
-  if(sigaction(SIGCHLD, &sigact, NULL)){
+  struct sigaction sigactc;
+  sigactc.sa_handler = ctrlc;
+  sigemptyset(&sigactc.sa_mask);
+  sigactc.sa_flags = SA_RESTART;
+  if(sigaction(SIGCHLD, &sigactc, NULL)){
     exit(-1);
   }
 
