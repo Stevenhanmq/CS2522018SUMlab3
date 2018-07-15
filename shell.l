@@ -74,7 +74,7 @@ return ch;
     }
     p++;
   } 
-  *tmp = '\0'
+  *tmp = '\0';
   yytext = strdup(w);
   yylval.string_val = strdup(yytext);
   return WORD;
