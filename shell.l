@@ -72,8 +72,8 @@ return ch;
     }
     else{
       *tmp = '\0';
-      p++
-      tmp++
+      p++;
+      tmp++;
     }
   }
   yytext = strdup(w);
