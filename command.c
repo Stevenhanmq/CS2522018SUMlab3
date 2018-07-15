@@ -144,6 +144,7 @@ void killzombies(int signal){
 void ctrlc(int signal){
   fprintf(stderr,"\n");
   prompt();
+  printf("get in here\n");
   promptflag = 1;
 }
 
@@ -396,7 +397,7 @@ int main() {
   if(sigaction(SIGINT, &sigactc, NULL)){
     exit(-1);
   }
-
+  printf("%d promptflag is here\n",promptflag);
   if(promptflag == 0){
     prompt();
     promptflag = 1;
