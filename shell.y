@@ -261,7 +261,7 @@ void expand_wildcards (char * prefix, char * suffix) {
     return;
   }
   regmatch_t match;
-  struct struct dirent *ent;
+  struct dirent *ent;
   while ((ent = readdir(dir)) != NULL){
     
   }
