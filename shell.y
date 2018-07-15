@@ -101,9 +101,9 @@ argument:
         filelist = (char**)malloc(max_entries*sizeof(char*));
       }
       char * nopref = "";
-      printf("here1\n");
+      //      printf("here1\n");
       expand_wildcards(nopref, strdup($1));
-      printf("here2\n");
+      //printf("here2\n");
       if (num_entries == 0) {
          simple_command_insert_argument(current_simple_command, strdup($1));
       }
