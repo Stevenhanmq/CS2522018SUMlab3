@@ -31,7 +31,7 @@ simple_command *current_simple_command;
  * Allocate and initialize a new simple_command.
  * Return a pointer to it.
  */
-void killzombies(int signal);
+//void killzombies(int signal);
 simple_command *simple_command_create() {
   // Initially allocate space for this many arguments
 
