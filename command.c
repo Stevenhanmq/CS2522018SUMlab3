@@ -222,6 +222,7 @@ void command_print(command *command) {
  */
 
 void command_execute(command *command) {
+  promptflag = 0;
   // Don't do anything if there are no simple commands
   if(!strcmp(command->simple_commands[0]->arguments[0],"exit")){
     exit(0);
