@@ -303,10 +303,8 @@ void expand_wildcards (char * prefix, char * suffix) {
 }
 
 int mycompare (const void *s1, const void *s2) {
-  char * string1 = strdup(s1);
-  char * string2 = strdup(s2);
   //  printf("%s,%s\n",string1, string2);
-  return (strcmp(string1, string2));
+  return (strcmp(s1,s2));
 }
 
 void yyerror(const char *message) {
