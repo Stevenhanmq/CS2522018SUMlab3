@@ -144,9 +144,8 @@ void killzombies(int signal){
 
 void ctrlc(int signal){
   fprintf(stderr,"\n");
-  if(promptflag == 0){
-    prompt();
-  }
+  prompt();
+  
 }
 
 void command_clear(command *command) {
@@ -222,7 +221,6 @@ void command_print(command *command) {
  */
 
 void command_execute(command *command) {
-  promptflag = 0;
   // Don't do anything if there are no simple commands
   if(!strcmp(command->simple_commands[0]->arguments[0],"exit")){
     exit(0);
@@ -363,7 +361,6 @@ void command_execute(command *command) {
   // Clear to prepare for next command
 
   command_clear(command);
-  promptflag = 1;
   // Print next prompt
 
   prompt();
@@ -389,7 +386,6 @@ void prompt() {
 int main() {
   // initialize the current_command
   
-  promptflag = 0;
   current_command = command_create();
 
   struct sigaction sigactc;
