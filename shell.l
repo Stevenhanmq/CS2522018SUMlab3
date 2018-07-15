@@ -86,7 +86,6 @@ return ch;
 }
 
 ["][^\n]+["] {
-  printf("%s \n", yytext);
   char * p = yytext;
   char * w = (char*)malloc(1024);
   char * a = w;
