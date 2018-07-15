@@ -304,6 +304,7 @@ void expand_wildcards (char * prefix, char * suffix) {
 
 int mycompare (const void *s1, const void *s2) {
   //  printf("%s,%s\n",string1, string2);
+  printf("sortonce\n");
   return (strcmp(s1,s2));
 }
 
