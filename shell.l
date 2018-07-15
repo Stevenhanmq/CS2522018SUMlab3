@@ -8,7 +8,7 @@
 
 %{
 
-#include <string.h>
+/*#include <string.h>
 #include <unistd.h>
 #include "y.tab.h"
 char * read_line(){
@@ -31,6 +31,7 @@ return ch;
 }
 #undef getc
 #define getc(f) mygetc(f)
+*/
 %}
 
 %%
