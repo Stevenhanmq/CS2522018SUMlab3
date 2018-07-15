@@ -271,7 +271,7 @@ void expand_wildcards (char * prefix, char * suffix) {
   while ((ent = readdir(dir)) != NULL){
     if(regexec(&re, ent->d_name,1,&match,0) == 0){
       if(ent->d_name[0] == '.'){
-	printf("%c \n",arg[0]);
+	printf("%c arg[0]\n",arg[0]);
         if(arg[0] == '.'){
           if(strcmp(prefix,"")){
             sprintf(new_pre, "%s/%s",prefix,ent->d_name);
