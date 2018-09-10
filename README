@@ -1,0 +1,17 @@
+working features:
+part1:
+IO redirection
+Pipes
+background process
+robustness for part1
+part2&3:
+wildcard
+zombie
+tilde
+cd(only works for first two tests, I believe the last 2 cd tests are related to env_expansion and I did not figure it out)
+exit and ctrlc
+double quote
+printenv
+setenv
+unsetenv
+
